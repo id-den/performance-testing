@@ -1,0 +1,44 @@
+---
+execution:
+- concurrency: 10
+  hold-for: 2m
+  ramp-up: 60s
+  scenario: Jimdo
+
+scenarios:
+  Jimdo:
+    data-sources:
+    - path: './contact.csv'
+      delimiter: ', '
+      variable-names: name, email, message
+
+    default-address: https://performance-testing.jimdo.com
+    requests:
+    - url: /
+      method: GET
+      label: Home Page      
+
+    - url: /testing
+      method: GET
+      label: Testing Page
+
+    - url: /about-1
+      method: GET
+      label: About Page
+
+    - url: /contact
+      method: POST
+      body:
+        m6a03a29b88c035720: ${name}     # Name field
+        m6a03a29b88c035721: ${email}    # Email field
+        m6a03a29b88c035722: ${message}  # Message field
+      label: Contact Page
+      
+modules:
+    blazemeter:
+      token: 8rxaqrrwnbfmg1iwsw17
+reporting:
+    - module: blazemeter
+      project: Performance Testing via Taurus
+      report-name: Load Tests
+      test: 10 user load for 2 mins

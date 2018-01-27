@@ -1,0 +1,12 @@
+---
+execution:
+- executor: locust
+  concurrency: 10
+  hold-for: 2m
+  ramp-up: 60s
+  scenario: Jimdo
+
+scenarios:
+  Jimdo:
+    default-address: https://performance-testing.jimdo.com
+    script: locust_test.py
