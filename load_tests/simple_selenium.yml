@@ -1,0 +1,22 @@
+execution:
+- executor: selenium
+  scenario: Jimdo
+  concurrency: 1
+  ramp-up: 10s
+  hold-for: 30s
+
+scenarios:
+  Jimdo:
+    browser: Firefox
+    timeout: 5s
+    default-address: https://performance-testing.jimdo.com
+    requests:
+    - url: /contact
+      actions:
+      - keysByID(m6a03a29b88c035720): Roman
+      - keysByID(m6a03a29b88c035721): myemail@email.com
+      - keysByID(m6a03a29b88c035722): Hi, My name is Roman
+      - clickByXPath(//input[@type='submit'])
+      - waitByCSS(.cc-m-confirmationtext): visible
+      assert:
+      - Success! Your form was sent.

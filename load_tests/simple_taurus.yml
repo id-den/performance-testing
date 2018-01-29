@@ -14,29 +14,26 @@ scenarios:
 
     default-address: https://performance-testing.jimdo.com
     requests:
-    - url: /
+    - label: Home Page      
+      url: /
       method: GET
-      label: Home Page      
 
-    - url: /testing
+    - label: Testing Page
       method: GET
-      label: Testing Page
+      url: /testing
 
-    - url: /about-1
+    - label: About Page
+      url: /about-1
       method: GET
-      label: About Page
 
-    - url: /contact
+    - label: Contact Page
+      url: /contact
       method: POST
       body:
         m6a03a29b88c035720: ${name}     # Name field
         m6a03a29b88c035721: ${email}    # Email field
         m6a03a29b88c035722: ${message}  # Message field
-      label: Contact Page
-      
-modules:
-    blazemeter:
-      token: 8rxaqrrwnbfmg1iwsw17
+
 reporting:
     - module: blazemeter
       project: Performance Testing via Taurus
